@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  /* align-items: center; */
+  border-bottom: 1px solid gray;
+  box-shadow: 4px 8px 8px 4px;
+  padding: 12px 24px;
+  margin-bottom: 24px;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.linkactive {
+  color: orange;
+}
