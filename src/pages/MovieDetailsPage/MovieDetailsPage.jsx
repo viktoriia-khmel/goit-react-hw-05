@@ -1,5 +1,5 @@
-import { NavLink, Outlet, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { fetchMovieById } from "../../services/api";
 
 
@@ -8,8 +8,10 @@ import s from './MovieDetailsPage.module.css'
 
 
 const MovieDetailsPage = () => {
-    const {movieId} = useParams();
-     console.log(movieId);
+  const { movieId } = useParams();
+  
+  const location = useLocation();
+  const backRef = useRef(location.state)
 const [movie, setMovie] = useState("");
   useEffect(() => {
   if (!movieId) return;
@@ -28,6 +30,7 @@ const defaultImg =
   return (
 
     <div className={s.wrap}>
+      <Link to={backRef.current ?? '/movies'}>Back</Link>
       <div className={s.wrapper}>
         <img src={
         movie.poster_path
@@ -58,7 +61,10 @@ const defaultImg =
         </li>
         </ul>
         <hr />
-        <Outlet />
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Outlet />
+        </Suspense>
+        
         
       </div>
       

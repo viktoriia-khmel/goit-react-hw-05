@@ -8,7 +8,6 @@ const SearchBar = ({handleChangeQuery}) => {
         query: '',
     };
     const handleSubmit = (values) => {
-        console.log(values);
         handleChangeQuery(values.query);
          }
 
