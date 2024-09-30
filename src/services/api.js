@@ -10,14 +10,26 @@ const options = {
 };
 
 export const fetchMoviesPop = async () => {
-  const { data } = await axios.get(
-    "trending/movie/day?language=en-US",
-    options
-  );
-  return data;
+  const { data } = await axios.get("trending/movie/day", options);
+  return data.results;
 };
 
 export const fetchMovieById = async (movieId) => {
   const { data } = await axios.get(`movie/${movieId}`, options);
   return data;
+};
+
+export const fetchMovieSearch = async (query) => {
+  const { data } = await axios.get(`search/movie?query=${query}`, options);
+  return data;
+};
+
+export const fetchMovieCreditById = async (movieId) => {
+  const { data } = await axios.get(`movie/${movieId}/credits`, options);
+  return data.cast;
+};
+
+export const fetchMovieReviewById = async (movieId) => {
+  const { data } = await axios.get(`movie/${movieId}/reviews`, options);
+  return data.cast;
 };
