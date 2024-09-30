@@ -1,28 +1,32 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MovieList from "../../components/MovieList/MovieList"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import { fetchMovieSearch } from "../../services/api";
+import { useSearchParams } from "react-router-dom";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+
   const handleChangeQuery = newQuery => {
-        setQuery(newQuery);
+    searchParams.set('query', newQuery);
+    setSearchParams(searchParams);
   }
   
 
   useEffect(() => {
     const getMoviesSearch = async () => {
-      const data = await fetchMovieSearch();
-      setMovies(data);
+      const data = await fetchMovieSearch(query);
+      setMovies(data.results);
     };
     getMoviesSearch();
-  })
+  }, [query])
   
+  if (!movies) {
+    return <h2>Loading...</h2>
+  }
   
-  // const FilteredMovies = useMemo(
-  //   () =>
-  //     movies.filter((movie) => movie.title.toLowerCase().includes(query.toLowerCase())), [query, movies]);
   return (
     <div>
       <SearchBar handleChangeQuery={handleChangeQuery} /> 

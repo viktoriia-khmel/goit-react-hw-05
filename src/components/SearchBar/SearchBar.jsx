@@ -4,18 +4,13 @@ import { Field, Form, Formik } from "formik";
 
 
 const SearchBar = ({handleChangeQuery}) => {
-    
-   
-    
-
     const initialValues = {
         query: '',
     };
     const handleSubmit = (values) => {
         console.log(values);
         handleChangeQuery(values.query);
-       
-    }
+         }
 
   return (
     <div>
