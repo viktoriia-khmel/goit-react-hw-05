@@ -15,13 +15,14 @@ const MovieReviews = () => {
     getData();
   }, [movieId]);
 
-  if (!reviews) {
-  return <h2>Loading...</h2>
-}
+ 
+ 
+  if (!reviews) return <h2>Loading...</h2>;
 
-  if (reviews.length === 0) {
+if (!reviews?.length) {
     return <h2>We do not have any reviews on this movie</h2>;
-  };
+  }; 
+  
 
   return (
     <div>
