@@ -1,0 +1,15 @@
+.review_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  width: 500px;
+}
+
+.author {
+  font-weight: 500;
+}
+
+.content {
+  font-weight: 400;
+}

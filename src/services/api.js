@@ -29,5 +29,5 @@ export const fetchMovieCreditById = async (movieId) => {
 
 export const fetchMovieReviewById = async (movieId) => {
   const { data } = await axios.get(`movie/${movieId}/reviews`);
-  return data.cast;
+  return data.results;
 };
